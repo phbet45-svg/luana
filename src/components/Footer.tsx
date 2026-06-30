@@ -1,4 +1,4 @@
-import { Mail, Instagram, MapPin, Phone, MessageSquare, Compass, ArrowUp } from 'lucide-react';
+import { Instagram, MapPin, Phone, MessageSquare, Compass, ArrowUp } from 'lucide-react';
 import { CONTACT_INFO } from '../data';
 
 export default function Footer() {
@@ -83,12 +83,6 @@ export default function Footer() {
             <div className="flex items-center space-x-3">
               <Phone className="w-5 h-5 text-[#C5A059]" />
               <span>{CONTACT_INFO.phone}</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Mail className="w-5 h-5 text-[#C5A059]" />
-              <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-[#C5A059] transition-colors">
-                {CONTACT_INFO.email}
-              </a>
             </div>
             <div className="pt-4 border-t border-white/5 space-y-1 text-xs text-gray-400">
               <p className="font-medium text-gray-300">Horário de Atendimento:</p>

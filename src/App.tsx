@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import BeforeAfter from './components/BeforeAfter';
-import VideoGallery from './components/VideoGallery';
+import Projects from './components/Projects';
 import Benefits from './components/Benefits';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -43,8 +43,8 @@ export default function App() {
       {/* Interactive Before & After Slider */}
       <BeforeAfter />
 
-      {/* Cinematic Video Projects Gallery */}
-      <VideoGallery />
+      {/* Cinematic Video & Photo Projects Showcase */}
+      <Projects />
 
       {/* 6 Key Benefits Block */}
       <Benefits />

@@ -5,8 +5,8 @@ import { CONTACT_INFO, IMAGES } from '../data';
 
 export default function About() {
   const photos = [
-    IMAGES.luanaPortrait,
-    'https://i.postimg.cc/cCS9nQTG/639054.jpg'
+    'https://i.postimg.cc/cCS9nQTG/639054.jpg',
+    'https://i.postimg.cc/NfThd9Dr/639434.jpg'
   ];
 
   const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
@@ -61,7 +61,7 @@ export default function About() {
                     animate={{ opacity: 1, filter: "brightness(1) saturate(0.95)" }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1.4, ease: 'easeInOut' }}
-                    className="absolute inset-0 w-full h-full object-contain object-center"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                     referrerPolicy="no-referrer"
                   />
                 </AnimatePresence>

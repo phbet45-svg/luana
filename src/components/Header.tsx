@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageSquare, ExternalLink, Play, Film } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, ExternalLink, Play, Film, Instagram } from 'lucide-react';
 import { CONTACT_INFO } from '../data';
 
 export default function Header() {
@@ -23,9 +23,8 @@ export default function Header() {
     { name: 'Sobre Mim', href: '#sobre' },
     { name: 'Serviços', href: '#servicos' },
     { name: 'Antes e Depois', href: '#antes-depois' },
-    { name: 'Vídeos', href: '#videos' },
+    { name: 'Projetos', href: '#projetos' },
     { name: 'Benefícios', href: '#beneficios' },
-    { name: 'FAQ', href: '#faq' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -88,19 +87,40 @@ export default function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#C5A059] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
+
+          {/* Elegant Divider was here, moved with icons to CTA area */}
         </nav>
 
-        {/* Call to Action Button */}
-        <div className="hidden md:flex items-center space-x-3">
+        {/* Call to Action Social Icons */}
+        <div className="hidden md:flex items-center space-x-5">
           <a
             id="header-cta-whatsapp"
             href={CONTACT_INFO.links.hero}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 border border-[#C5A059] text-[#C5A059] px-6 py-2.5 text-[10px] uppercase tracking-widest hover:bg-[#C5A059] hover:text-black transition-all duration-300 hover:scale-105"
+            className="text-white/85 hover:text-[#C5A059] transition-all duration-300 transform hover:scale-110 p-1 flex items-center justify-center"
+            title="Falar no WhatsApp"
+            aria-label="WhatsApp"
           >
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span>Falar com Luana</span>
+            <svg
+              viewBox="0 0 24 24"
+              className="w-7 h-7 fill-current"
+            >
+              <path d="M12.004 2C6.48 2 2 6.48 2 12c0 1.76.46 3.42 1.26 4.88L2 22l5.3-1.22c1.4.78 3.01 1.22 4.7 1.22 5.52 0 10-4.48 10-10S17.52 2 12.004 2zm4.78 14.18c-.2.56-1.12 1.04-1.63 1.11-.42.06-.97.11-2.9-.69-2.46-1.02-4.04-3.52-4.16-3.69-.12-.17-1.01-1.34-1.01-2.56 0-1.22.64-1.82.87-2.07.2-.23.54-.34.86-.34.1 0 .2 0 .3.01.28.01.42.03.6.47.23.56.78 1.9.85 2.05.07.15.12.33.02.53-.1.2-.21.3-.36.48-.15.17-.32.39-.16.66.3.52.74.96 1.26 1.41.67.58 1.24.96 1.58 1.12.32.15.51.13.7-.08.19-.21.81-.94 1.03-1.27.22-.32.44-.27.74-.16.3.11 1.91.9 2.24 1.06.33.16.55.24.63.38.08.14.08.82-.12 1.38z"/>
+            </svg>
+          </a>
+
+          <span className="h-5 w-[1px] bg-white/20" />
+
+          <a
+            href={CONTACT_INFO.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/85 hover:text-[#C5A059] transition-all duration-300 transform hover:scale-110 p-1 flex items-center justify-center"
+            title="Siga no Instagram"
+            aria-label="Instagram"
+          >
+            <Instagram className="w-7 h-7 stroke-[1.5]" />
           </a>
         </div>
 
@@ -130,7 +150,7 @@ export default function Header() {
         <div className="p-6 border-b border-white/10 flex justify-between items-center bg-[#0A0A0A]">
           <div className="flex items-center space-x-2.5">
             <img 
-              id="mobile-drawer-brand-logo"
+               id="mobile-drawer-brand-logo"
               src="https://i.postimg.cc/P5WmCB9M/Chat-GPT-Image-30-06-2026-14-15-52.png" 
               alt="Luana Fatel Logo" 
               className="h-8 w-auto object-contain"
@@ -138,7 +158,7 @@ export default function Header() {
             />
             <div className="flex flex-col">
               <span className="font-serif font-bold text-base text-[#C5A059] tracking-[0.15em] leading-tight">LUANA FATEL</span>
-              <span className="text-[7px] tracking-[0.25em] text-white/50 font-light uppercase leading-none mt-1 animate-pulse">Arquitetura & Interiores</span>
+              <span className="text-[7px] tracking-[0.25em] text-white/50 font-light uppercase leading-none mt-1">Arquitetura & Interiores</span>
             </div>
           </div>
           <button
@@ -179,10 +199,10 @@ export default function Header() {
             href={CONTACT_INFO.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center space-x-2 border border-white/20 text-white hover:text-[#C5A059] hover:border-[#C5A059] py-2.5 text-xs tracking-wider uppercase transition-colors"
+            className="flex items-center justify-center space-x-2 border border-white/20 text-white hover:text-[#C5A059] hover:border-[#C5A059] py-2.5 text-xs tracking-wider uppercase transition-colors group"
           >
-            <ExternalLink className="w-4 h-4 text-white/40" />
-            <span>Ver Instagram</span>
+            <Instagram className="w-4 h-4 text-[#C5A059] group-hover:scale-110 transition-transform" />
+            <span>Seguir no Instagram</span>
           </a>
         </div>
       </div>

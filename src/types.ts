@@ -42,6 +42,14 @@ export interface ProcessStep {
   details: string[];
 }
 
+export interface BeforeAfterPair {
+  id: number;
+  before: string;
+  after: string;
+  category?: string;
+  description?: string;
+}
+
 export interface FAQItem {
   id: string;
   question: string;

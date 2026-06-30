@@ -250,3 +250,142 @@ export const FAQS: FAQItem[] = [
     answer: 'Dependendo da dimensão do espaço e das etapas de revisão, o prazo médio para a entrega do estudo preliminar em 3D varia entre 15 a 30 dias úteis após a reunião de briefing. Após a sua aprovação, o executivo técnico e marcenaria costumam levar de 10 a 20 dias úteis adicionais.'
   }
 ];
+
+export interface BeforeAfterPairData {
+  id: number;
+  before: string;
+  after: string;
+  category: string;
+  description: string;
+}
+
+export const BEFORE_AFTER_GALLERY: BeforeAfterPairData[] = [
+  {
+    id: 1,
+    before: 'https://i.postimg.cc/CKcddqp1/639249.jpg',
+    after: 'https://i.postimg.cc/yNLWWZ45/639252.jpg',
+    category: 'Transformação 01',
+    description: 'Aproveitamento refinado do ambiente com iluminação cênica integrada e acabamentos sob medida.'
+  },
+  {
+    id: 2,
+    before: 'https://i.postimg.cc/GpX99ynp/639255.jpg',
+    after: 'https://i.postimg.cc/DzxmmX3f/639258.jpg',
+    category: 'Transformação 02',
+    description: 'Otimização inteligente do espaço com marcenaria planejada contemporânea e fluidez visual.'
+  },
+  {
+    id: 3,
+    before: 'https://i.postimg.cc/R0gqqHxS/639261.jpg',
+    after: 'https://i.postimg.cc/25033ZNz/639264.jpg',
+    category: 'Transformação 03',
+    description: 'Integração de sala de jantar e estar trazendo amplitude, aconchego e luxo contemporâneo.'
+  },
+  {
+    id: 4,
+    before: 'https://i.postimg.cc/7LKbb2rq/639267.jpg',
+    after: 'https://i.postimg.cc/7LKbb2r8/639270.jpg',
+    category: 'Transformação 04',
+    description: 'Cozinha sofisticada com bancadas esculpidas, organization estratégica e alto padrão nos detalhes.'
+  },
+  {
+    id: 5,
+    before: 'https://i.postimg.cc/R0gqqHxr/639273.jpg',
+    after: 'https://i.postimg.cc/PqSNNwsg/639276.jpg',
+    category: 'Transformação 05',
+    description: 'Painéis elegantes de madeira integrados com iluminação indireta sutil e mobiliário curado.'
+  },
+  {
+    id: 6,
+    before: 'https://i.postimg.cc/PqSNNwsB/639279.jpg',
+    after: 'https://i.postimg.cc/QtVC7dj8/639285.jpg',
+    category: 'Transformação 06',
+    description: 'Living requintado redefinindo fluxos de circulação e integrando materiais nobres na decoração.'
+  },
+  {
+    id: 7,
+    before: 'https://i.postimg.cc/PxNJD5dd/639288.jpg',
+    after: 'https://i.postimg.cc/R0gqqHxq/639291.jpg',
+    category: 'Transformação 07',
+    description: 'Banheiro de casal luxuoso com revestimentos de grande formato e metais minimalistas premium.'
+  },
+  {
+    id: 8,
+    before: 'https://i.postimg.cc/1t4XF3yX/639325.jpg',
+    after: 'https://i.postimg.cc/FR1zSHhk/639333.jpg',
+    category: 'Transformação 08',
+    description: 'Closet planejado de alto padrão com portas em vidro reflecta e nichos de iluminação interna.'
+  },
+  {
+    id: 9,
+    before: 'https://i.postimg.cc/qRgqKvpX/639346.jpg',
+    after: 'https://i.postimg.cc/sX1xWg3S/639350.jpg',
+    category: 'Transformação 09',
+    description: 'Varanda e área externa integradas com revestimentos atérmicos e conforto paisagístico.'
+  },
+  {
+    id: 10,
+    before: 'https://i.postimg.cc/SsjR9xmz/639351.jpg',
+    after: 'https://i.postimg.cc/W3tzZ1sk/639355.jpg',
+    category: 'Transformação 10',
+    description: 'Suíte secundária com cabeceiras estofadas em linho e luz suave ideal para o descanso.'
+  },
+  {
+    id: 11,
+    before: 'https://i.postimg.cc/DZm0Gw7P/639360.jpg',
+    after: 'https://i.postimg.cc/wv3MNj9X/639361.jpg',
+    category: 'Transformação 11',
+    description: 'Estúdio de home office requintado com painéis de madeira confortáveis e excelente ergonomia.'
+  },
+  {
+    id: 12,
+    before: 'https://i.postimg.cc/cH6C3Ldm/639364.jpg',
+    after: 'https://i.postimg.cc/xCq8m19K/639366.jpg',
+    category: 'Transformação 12',
+    description: 'Espaço home theater focado em acústica, iluminação dimerizável e estofados ultra profundos.'
+  },
+  {
+    id: 13,
+    before: 'https://i.postimg.cc/zBMBFYft/639372.jpg',
+    after: 'https://i.postimg.cc/tTfTNGgB/639375.jpg',
+    category: 'Transformação 13',
+    description: 'Hall social privativo com aparadores esculpidos em pedra de alto luxo e espelhos bronze.'
+  },
+  {
+    id: 14,
+    before: 'https://i.postimg.cc/3R6RFQw9/639378.jpg',
+    after: 'https://i.postimg.cc/cHjHBGJD/639381.jpg',
+    category: 'Transformação 14',
+    description: 'Layout social com pé-direito duplo unificado de forma cênica com marcenaria integrada.'
+  },
+  {
+    id: 15,
+    before: 'https://i.postimg.cc/8535mgCd/639384.jpg',
+    after: 'https://i.postimg.cc/Jngn5ChJ/639385.jpg',
+    category: 'Transformação 15',
+    description: 'Varanda gourmet com marcenaria náutica e mesa de madeira maciça de alta durabilidade.'
+  },
+  {
+    id: 16,
+    before: 'https://i.postimg.cc/63S3fxQn/639388.jpg',
+    after: 'https://i.postimg.cc/C1t1spKb/639390.jpg',
+    category: 'Transformação 16',
+    description: 'Quarto master com painel estofado sob medida e arandelas douradas em composição simétrica.'
+  },
+  {
+    id: 17,
+    before: 'https://i.postimg.cc/QtVC7dj0/639394.jpg',
+    after: 'https://i.postimg.cc/3R6RFQwF/639399-(1).jpg',
+    category: 'Transformação 17',
+    description: 'Redesenho completo de fachada contemporânea com brises deslizantes e linhas minimalistas puras.'
+  }
+];
+
+export const NEW_PROJECT_IMAGES = [
+  'https://i.postimg.cc/nzMrmhnp/639285-(1).jpg',
+  'https://i.postimg.cc/d1D3CVJD/639317-(1).jpg',
+  'https://i.postimg.cc/k4DGSg76/639333-(1).jpg',
+  'https://i.postimg.cc/cH6C3Ldh/639394-(1).jpg',
+  'https://i.postimg.cc/1t4XF3yt/639309.jpg',
+  'https://i.postimg.cc/QtVC7djH/639317.jpg'
+];

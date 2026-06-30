@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Redundant premium sources with the local custom file as primary
+// Redundant premium sources with the local custom file
 const SOUNDTRACK_SOURCES = [
-  '/ambient-jazz.mp3',
-  'https://res.cloudinary.com/dfahypfmr/video/upload/v1782844212/AUD-20260630-WA0012_ulk3x5.mp3'
+  'https://res.cloudinary.com/dfahypfmr/video/upload/v1782844212/AUD-20260630-WA0012_ulk3x5.mp3',
+  '/ambient-jazz.mp3'
 ];
 
 export default function AudioPlayer() {
@@ -14,8 +14,8 @@ export default function AudioPlayer() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Configured clear background level volume (50%)
-    audio.volume = 0.50;
+    // Configured high premium background level volume (80%)
+    audio.volume = 0.80;
 
     const playAudio = () => {
       audio.play()
