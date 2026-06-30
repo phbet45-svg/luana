@@ -51,8 +51,7 @@ const WHATSAPP_TESTIMONIALS: WhatsAppTestimonial[] = [
       {
         id: 'm1-3',
         sender: 'client',
-        image: 'https://i.postimg.cc/nzMrmhnp/639285-(1).jpg',
-        text: 'Olha esse ângulo do living! Ficou perfeito demais! 😍✨',
+        text: 'Aquele ângulo do living ficou perfeito demais! 😍✨',
         time: '14:18'
       },
       {
@@ -95,8 +94,7 @@ const WHATSAPP_TESTIMONIALS: WhatsAppTestimonial[] = [
       {
         id: 'm2-4',
         sender: 'client',
-        image: 'https://i.postimg.cc/k4DGSg76/639333-(1).jpg',
-        text: 'Esse acabamento e marcenaria da recepção ficaram surreais! 👏🏼💼',
+        text: 'Todo o acabamento e a marcenaria da recepção ficaram surreais! 👏🏼💼',
         time: '09:17'
       }
     ]
@@ -127,8 +125,7 @@ const WHATSAPP_TESTIMONIALS: WhatsAppTestimonial[] = [
       {
         id: 'm3-3',
         sender: 'client',
-        image: 'https://i.postimg.cc/d1D3CVJD/639317-(1).jpg',
-        text: 'Olha que paz essa sala integrada! O gesso e a iluminação ficaram impecáveis ❤️',
+        text: 'Dá uma paz incrível essa nossa sala integrada! O gesso e a iluminação ficaram impecáveis ❤️',
         time: '18:44'
       },
       {

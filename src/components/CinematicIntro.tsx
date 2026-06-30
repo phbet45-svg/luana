@@ -368,6 +368,16 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                 >
                   ARQUITETURA & INTERIORES DE ALTO PADRÃO
                 </motion.div>
+
+                {/* Refined gold sound activator guidance */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0.4, 1.0, 0.4] }}
+                  transition={{ delay: 4.4, duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-[8px] sm:text-[9px] font-mono font-bold text-[#C5A059] tracking-[0.25em] uppercase flex items-center justify-center gap-2 pt-4 select-none"
+                >
+                  <span>🔊 TOQUE EM QUALQUER LUGAR PARA ATIVAR O SOM AMBIENTE</span>
+                </motion.div>
               </div>
 
             </div>
