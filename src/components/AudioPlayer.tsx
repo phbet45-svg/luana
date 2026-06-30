@@ -1,28 +1,35 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+// Redundant premium sources with the local custom file as primary
+const SOUNDTRACK_SOURCES = [
+  '/ambient-jazz.mp3',
+  'https://res.cloudinary.com/dfahypfmr/video/upload/v1782844212/AUD-20260630-WA0012_ulk3x5.mp3'
+];
 
 export default function AudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [sourceIndex, setSourceIndex] = useState(0);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Defina o volume inicial em um nível de fundo agradável e discreto (35%)
-    audio.volume = 0.35;
+    // Configured clear background level volume (50%)
+    audio.volume = 0.50;
 
-    const playAttempt = () => {
+    const playAudio = () => {
       audio.play()
         .then(() => {
-          // Playback bem-sucedido! Remove os ouvintes para evitar chamadas extras
+          // Playback succeeded! Remove listeners to avoid redundant calls
           removeInteractionListeners();
         })
-        .catch(() => {
-          // Bloqueado pelas políticas de autoplay do navegador; aguardará a primeira interação do usuário.
+        .catch((err) => {
+          console.warn('Playback blocked by browser or source failed. Waiting for next interaction.', err);
         });
     };
 
     const handleInteraction = () => {
-      playAttempt();
+      playAudio();
     };
 
     const addInteractionListeners = () => {
@@ -30,6 +37,8 @@ export default function AudioPlayer() {
       window.addEventListener('touchstart', handleInteraction, { once: true, capture: true });
       window.addEventListener('scroll', handleInteraction, { once: true, capture: true });
       window.addEventListener('keydown', handleInteraction, { once: true, capture: true });
+      window.addEventListener('mousemove', handleInteraction, { once: true, capture: true });
+      window.addEventListener('mousedown', handleInteraction, { once: true, capture: true });
     };
 
     const removeInteractionListeners = () => {
@@ -37,25 +46,36 @@ export default function AudioPlayer() {
       window.removeEventListener('touchstart', handleInteraction, { capture: true });
       window.removeEventListener('scroll', handleInteraction, { capture: true });
       window.removeEventListener('keydown', handleInteraction, { capture: true });
+      window.removeEventListener('mousemove', handleInteraction, { capture: true });
+      window.removeEventListener('mousedown', handleInteraction, { capture: true });
     };
 
-    // Tenta reproduzir imediatamente ao carregar a página
-    playAttempt();
+    // Attempt immediately
+    playAudio();
 
-    // Configura os ouvintes para detectar o primeiro gesto/interação do usuário
+    // Register active user gesture listeners
     addInteractionListeners();
 
     return () => {
       removeInteractionListeners();
     };
-  }, []);
+  }, [sourceIndex]);
+
+  // If a source fails to load, dynamically rotate to the next backup source to guarantee playback!
+  const handleAudioError = () => {
+    if (sourceIndex < SOUNDTRACK_SOURCES.length - 1) {
+      console.log(`Source ${sourceIndex} failed. Falling back to source ${sourceIndex + 1}`);
+      setSourceIndex(sourceIndex + 1);
+    }
+  };
 
   return (
     <audio
       ref={audioRef}
-      src="https://audionautix.com/Music/MidnightBlue.mp3"
+      src={SOUNDTRACK_SOURCES[sourceIndex]}
       loop
       autoPlay
+      onError={handleAudioError}
       style={{ display: 'none' }}
     />
   );
