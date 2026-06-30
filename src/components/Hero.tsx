@@ -13,12 +13,12 @@ export default function Hero() {
         <img
           src={IMAGES.heroLuxury}
           alt="Projeto de Luxo de Luana Fatel"
-          className="w-full h-full object-cover object-center transform scale-105 filter brightness-[0.25] saturate-[0.85]"
+          className="w-full h-full object-cover object-center transform scale-100 filter brightness-[0.55] md:brightness-[0.80] saturate-[1.05] transition-all duration-700"
           referrerPolicy="no-referrer"
         />
         {/* Subtle radial and gradient shadows for maximum copy legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 md:via-[#0A0A0A]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/90" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

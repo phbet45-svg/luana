@@ -212,8 +212,8 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    // Create particles
-    const particleCount = 45;
+    // Create particles (increased count to 70 for richer visuals)
+    const particleCount = 70;
     const particles: Array<{
       x: number;
       y: number;
@@ -223,25 +223,61 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
       opacity: number;
       pulseSpeed: number;
       pulsePhase: number;
+      isStar: boolean; // 35% of particles will be luxurious 4-pointed stars
     }> = [];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 1.8 + 0.4,
-        speedX: (Math.random() - 0.3) * 0.25, // Drifting slightly to the right
-        speedY: -(Math.random() * 0.4 + 0.15), // Drifting upwards
-        opacity: Math.random() * 0.6 + 0.15,
-        pulseSpeed: Math.random() * 0.02 + 0.005,
+        radius: Math.random() * 2.0 + 0.5,
+        speedX: (Math.random() - 0.2) * 0.3, // Slow premium drift to the right
+        speedY: -(Math.random() * 0.5 + 0.1),  // Soft slow upward drift
+        opacity: Math.random() * 0.7 + 0.2,
+        pulseSpeed: Math.random() * 0.04 + 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
+        isStar: Math.random() < 0.35,
       });
     }
+
+    // Light Sheen Glide position tracker
+    let sheenX = -canvas.width * 0.5;
+
+    // Helper to draw beautiful four pointed luxurious curved star
+    const drawFourPointStar = (cContext: CanvasRenderingContext2D, x: number, y: number, size: number, opacity: number) => {
+      cContext.save();
+      cContext.beginPath();
+      cContext.translate(x, y);
+      cContext.moveTo(0, -size);
+      cContext.quadraticCurveTo(0, 0, size, 0);
+      cContext.quadraticCurveTo(0, 0, 0, size);
+      cContext.quadraticCurveTo(0, 0, -size, 0);
+      cContext.quadraticCurveTo(0, 0, 0, -size);
+      cContext.closePath();
+      cContext.fillStyle = `rgba(238, 201, 121, ${opacity})`;
+      cContext.shadowColor = 'rgba(197, 160, 89, 0.7)';
+      cContext.shadowBlur = size * 3;
+      cContext.fill();
+      cContext.restore();
+    };
 
     // Render loop
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // 1. Draw luxurious sliding golden light sheen across the screen
+      sheenX += 1.8;
+      if (sheenX > canvas.width * 2) {
+        sheenX = -canvas.width * 0.8;
+      }
+      const sheenGrad = ctx.createLinearGradient(sheenX - 250, 0, sheenX + 250, canvas.height);
+      sheenGrad.addColorStop(0, 'rgba(197, 160, 89, 0)');
+      sheenGrad.addColorStop(0.5, 'rgba(197, 160, 89, 0.08)'); // subtle premium lens sheen
+      sheenGrad.addColorStop(1, 'rgba(197, 160, 89, 0)');
+      ctx.fillStyle = sheenGrad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 2. Draw standard and star-shaped particles
       particles.forEach((p) => {
         // Drift movement
         p.x += p.x > canvas.width + 10 ? -canvas.width - 20 : p.speedX;
@@ -249,18 +285,22 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
 
         // Subtle luminosity pulse
         p.pulsePhase += p.pulseSpeed;
-        const currentOpacity = Math.max(0.05, p.opacity + Math.sin(p.pulsePhase) * 0.12);
+        const currentOpacity = Math.max(0.1, p.opacity + Math.sin(p.pulsePhase) * 0.2);
 
-        // Draw particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        
-        // Luxury warm golden gold glow color (#C5A059)
-        ctx.fillStyle = `rgba(197, 160, 89, ${currentOpacity})`;
-        ctx.shadowColor = 'rgba(197, 160, 89, 0.4)';
-        ctx.shadowBlur = p.radius * 3;
-        ctx.fill();
-        ctx.shadowBlur = 0; // reset shadow
+        if (p.isStar) {
+          // Draw a luxurious four-pointed sparkling star
+          const starSize = p.radius * 2.8;
+          drawFourPointStar(ctx, p.x, p.y, starSize, currentOpacity);
+        } else {
+          // Draw luxurious glowing gold round dust
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(197, 160, 89, ${currentOpacity})`;
+          ctx.shadowColor = 'rgba(197, 160, 89, 0.5)';
+          ctx.shadowBlur = p.radius * 3.5;
+          ctx.fill();
+          ctx.shadowBlur = 0; // reset
+        }
       });
 
       animationFrameId = requestAnimationFrame(render);
@@ -303,65 +343,23 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
 
           {/* Background Cinematic Visual Scenes */}
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-            <AnimatePresence mode="wait">
-              {currentScene === 1 && (
-                <motion.div
-                  key="scene-1"
-                  initial={{ opacity: 0, scale: 1.15 }}
-                  animate={{ opacity: 0.25, scale: 1.05 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 2.2, ease: 'easeOut' }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <img
-                    src={IMAGES.heroLuxury}
-                    alt="Intro Luxo"
-                    className="w-full h-full object-cover object-center"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-              )}
+            <motion.div
+              initial={{ opacity: 0, scale: 1.15 }}
+              animate={{ opacity: 0.85, scale: 1.05 }}
+              transition={{ duration: 7.0, ease: 'easeOut' }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <img
+                src={IMAGES.heroLuxury}
+                alt="Intro Luxo"
+                className="w-full h-full object-cover object-center"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
 
-              {currentScene === 2 && (
-                <motion.div
-                  key="scene-2"
-                  initial={{ opacity: 0, scale: 1.0 }}
-                  animate={{ opacity: 0.3, scale: 1.08 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 3.2, ease: 'easeInOut' }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <img
-                    src={IMAGES.commercial}
-                    alt="Intro Recepção"
-                    className="w-full h-full object-cover object-center"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-              )}
-
-              {currentScene === 3 && (
-                <motion.div
-                  key="scene-3"
-                  initial={{ opacity: 0, scale: 1.06 }}
-                  animate={{ opacity: 0.25, scale: 1.0 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 2.2, ease: 'easeOut' }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <img
-                    src={IMAGES.afterLiving}
-                    alt="Intro Sala"
-                    className="w-full h-full object-cover object-center"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Dark vignette cinematic gradient shadow overlay */}
-            <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#0A0A0A]/70 to-[#0A0A0A] pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/90 via-transparent to-[#0A0A0A]/95 pointer-events-none" />
+            {/* Dark vignette cinematic gradient shadow overlay - darkened for text readability */}
+            <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/85 via-transparent to-[#0A0A0A]/90 pointer-events-none" />
           </div>
 
           {/* Floating glowing golden dust particles canvas */}
@@ -395,91 +393,38 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
 
           {/* Centered Typography Elements */}
           <div className="relative z-30 flex flex-col items-center text-center max-w-4xl px-6 select-none">
-            
-            {/* Scene 1 Elements (0 to 2 seconds) */}
-            <AnimatePresence mode="wait">
-              {currentScene === 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              className="space-y-6"
+            >
+              <div className="flex items-center justify-center space-x-2 text-[#C5A059]">
+                <Sparkles className="w-4 h-4 animate-pulse" />
+                <span className="text-[10px] font-mono font-semibold tracking-[0.3em] uppercase">Luana Fatel</span>
+              </div>
+              
+              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-extralight tracking-[0.25em] text-white">
+                LUANA FATEL
+              </h1>
+              
+              <div className="space-y-4">
+                <p className="font-serif italic font-light text-xl sm:text-2xl md:text-3xl text-gradient text-transparent bg-clip-text bg-gradient-to-r from-white via-gold-100 to-[#C5A059] tracking-wide leading-relaxed">
+                  "Arquitetura que traduz a sua essência"
+                </p>
+                
                 <motion.div
-                  key="scene-text-1"
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="space-y-4"
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="inline-block border-t border-b border-white/10 py-2.5 px-6"
                 >
-                  <div className="flex items-center justify-center space-x-2 text-[#C5A059]">
-                    <Sparkles className="w-4 h-4" />
-                    <span className="text-[10px] font-mono font-semibold tracking-[0.3em] uppercase">Luana Fatel</span>
-                  </div>
-                  <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-extralight tracking-[0.25em] text-white">
-                    LUANA FATEL
-                  </h1>
-                  <p className="text-[11px] font-mono font-light text-gray-400 uppercase tracking-[0.4em]">
-                    ARQUITETURA & DESIGN DE INTERIORES
+                  <p className="text-[10px] sm:text-xs font-mono font-medium tracking-[0.25em] text-white uppercase">
+                    PROJETOS RESIDENCIAIS & INTERIORES • FEIRA DE SANTANA • SALVADOR
                   </p>
                 </motion.div>
-              )}
-
-              {/* Scene 2 Elements (2 to 5 seconds) */}
-              {currentScene === 2 && (
-                <motion.div
-                  key="scene-text-2"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="space-y-6"
-                >
-                  <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-extralight tracking-[0.25em] text-white">
-                    LUANA FATEL
-                  </h1>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="flex flex-col items-center"
-                  >
-                    <p className="font-serif italic font-light text-xl sm:text-2xl md:text-3xl text-gradient text-transparent bg-clip-text bg-gradient-to-r from-white via-gold-100 to-[#C5A059] tracking-wide leading-relaxed">
-                      "Arquitetura que traduz a sua essência"
-                    </p>
-                  </motion.div>
-                </motion.div>
-              )}
-
-              {/* Scene 3 Elements (5 to 7 seconds) */}
-              {currentScene === 3 && (
-                <motion.div
-                  key="scene-text-3"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="space-y-6"
-                >
-                  <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-extralight tracking-[0.25em] text-white">
-                    LUANA FATEL
-                  </h1>
-                  
-                  <div className="space-y-4">
-                    <p className="font-serif italic font-light text-xl sm:text-2xl md:text-3xl text-[#C5A059] tracking-wide leading-relaxed">
-                      "Arquitetura que traduz a sua essência"
-                    </p>
-                    
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                      className="inline-block border-t border-b border-white/10 py-2.5 px-6"
-                    >
-                      <p className="text-[10px] sm:text-xs font-mono font-medium tracking-[0.25em] text-white uppercase">
-                        PROJETOS RESIDENCIAIS & INTERIORES • FEIRA DE SANTANA • SALVADOR
-                      </p>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
+              </div>
+            </motion.div>
           </div>
 
           {/* Bottom Right Corner: Circular Countdown Skip Button */}

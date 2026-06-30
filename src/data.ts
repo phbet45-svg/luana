@@ -8,7 +8,7 @@ import afterLivingImg from './assets/images/after_living_room_1782740961654.jpg'
 import commercialImg from './assets/images/commercial_reception_1782740977092.jpg';
 
 export const IMAGES = {
-  heroLuxury: heroLuxuryImg,
+  heroLuxury: 'https://i.postimg.cc/1XBgKQ00/Chat-GPT-Image-30-06-2026-13-44-13.png',
   luanaPortrait: 'https://i.postimg.cc/YS9xyDbV/eu.jpg',
   beforeLiving: beforeLivingImg,
   afterLiving: afterLivingImg,
@@ -92,7 +92,7 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 'proj-1',
-    title: 'Residência Aura Contemporânea',
+    title: 'Projeto 1',
     category: 'residencial',
     imageUrl: IMAGES.heroLuxury,
     location: 'Feira de Santana - BA',
@@ -101,7 +101,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'proj-2',
-    title: 'Clínica Odonto Luxury',
+    title: 'Projeto 2',
     category: 'comercial',
     imageUrl: IMAGES.commercial,
     location: 'Salvador - BA',
@@ -110,7 +110,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'proj-3',
-    title: 'Apartamento Soft Comfort',
+    title: 'Projeto 3',
     category: 'interiores',
     imageUrl: IMAGES.afterLiving,
     location: 'Salvador - BA',

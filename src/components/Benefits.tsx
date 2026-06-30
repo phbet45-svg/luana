@@ -83,37 +83,6 @@ export default function Benefits() {
           ))}
         </div>
 
-        {/* Emotional Value Statement */}
-        <div className="mt-16 bg-[#0A0A0A] border border-white/10 rounded-none p-8 sm:p-12 text-white relative overflow-hidden">
-          {/* Ambient visual overlay effect */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#C5A059]/5 rounded-none blur-3xl -z-10" />
-          
-          <div className="max-w-3xl space-y-6">
-            <p className="text-[#C5A059] font-mono text-xs uppercase tracking-widest font-semibold">
-              Sua vida em um novo patamar
-            </p>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light leading-tight italic">
-              "A casa onde você vive influencia diretamente em como você se sente, pensa e age."
-            </h3>
-            <p className="text-gray-300 font-light text-sm sm:text-base leading-relaxed">
-              Não se contente com espaços genéricos ou mal iluminados. Permitir-se viver em um ambiente de alto padrão, desenhado sob medida para sua essência, é um ato de valorização pessoal e profissional.
-            </p>
-            
-            <div className="pt-4">
-              <a
-                id="benefits-inner-cta"
-                href={CONTACT_INFO.links.hero}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 bg-[#C5A059] hover:bg-[#b18b41] text-black font-bold px-8 py-4 rounded-none text-xs uppercase tracking-widest transition-all duration-300"
-              >
-                <span>Garantir transformação de alto padrão</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   );

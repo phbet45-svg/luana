@@ -23,8 +23,8 @@ export default function Header() {
     { name: 'Sobre Mim', href: '#sobre' },
     { name: 'Serviços', href: '#servicos' },
     { name: 'Antes e Depois', href: '#antes-depois' },
+    { name: 'Vídeos', href: '#videos' },
     { name: 'Benefícios', href: '#beneficios' },
-    { name: 'Processo', href: '#processo' },
     { name: 'FAQ', href: '#faq' },
   ];
 
@@ -57,13 +57,22 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Brand Logo / Monogram */}
-        <a href="#inicio" onClick={(e) => handleNavClick(e, '#inicio')} className="flex flex-col select-none group">
-          <span className="font-serif font-bold text-xl md:text-2xl tracking-[0.2em] text-[#C5A059] transition-colors duration-300">
-            LUANA FATEL
-          </span>
-          <span className="text-[9px] md:text-[10px] tracking-[0.3em] font-light uppercase text-center text-white/60 group-hover:text-white transition-colors duration-300">
-            Arquitetura & Interiores
-          </span>
+        <a href="#inicio" onClick={(e) => handleNavClick(e, '#inicio')} className="flex items-center space-x-3 select-none group">
+          <img 
+            id="header-brand-logo"
+            src="https://i.postimg.cc/P5WmCB9M/Chat-GPT-Image-30-06-2026-14-15-52.png" 
+            alt="Luana Fatel Logo" 
+            className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
+          <div className="flex flex-col">
+            <span className="font-serif font-bold text-lg md:text-xl tracking-[0.2em] text-[#C5A059] transition-colors duration-300 leading-tight">
+              LUANA FATEL
+            </span>
+            <span className="text-[8px] md:text-[9px] tracking-[0.3em] font-light uppercase text-white/60 group-hover:text-white transition-colors duration-300 leading-none mt-1">
+              Arquitetura & Interiores
+            </span>
+          </div>
         </a>
 
         {/* Desktop Navigation */}
@@ -119,9 +128,18 @@ export default function Header() {
         }`}
       >
         <div className="p-6 border-b border-white/10 flex justify-between items-center bg-[#0A0A0A]">
-          <div className="flex flex-col">
-            <span className="font-serif font-bold text-lg text-[#C5A059] tracking-[0.15em]">LUANA FATEL</span>
-            <span className="text-[8px] tracking-[0.25em] text-white/50 font-light uppercase">Arquitetura & Interiores</span>
+          <div className="flex items-center space-x-2.5">
+            <img 
+              id="mobile-drawer-brand-logo"
+              src="https://i.postimg.cc/P5WmCB9M/Chat-GPT-Image-30-06-2026-14-15-52.png" 
+              alt="Luana Fatel Logo" 
+              className="h-8 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
+            <div className="flex flex-col">
+              <span className="font-serif font-bold text-base text-[#C5A059] tracking-[0.15em] leading-tight">LUANA FATEL</span>
+              <span className="text-[7px] tracking-[0.25em] text-white/50 font-light uppercase leading-none mt-1 animate-pulse">Arquitetura & Interiores</span>
+            </div>
           </div>
           <button
             onClick={() => setIsMenuOpen(false)}

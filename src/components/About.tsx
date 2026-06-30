@@ -1,8 +1,23 @@
-import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Award, Compass, HeartHandshake, CheckCircle2 } from 'lucide-react';
 import { CONTACT_INFO, IMAGES } from '../data';
 
 export default function About() {
+  const photos = [
+    IMAGES.luanaPortrait,
+    'https://i.postimg.cc/cCS9nQTG/639054.jpg'
+  ];
+
+  const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentPhotoIdx((prev) => (prev + 1) % photos.length);
+    }, 4500); // elegant long interval
+    return () => clearInterval(timer);
+  }, [photos.length]);
+
   const achievements = [
     {
       icon: <Award className="w-6 h-6 text-[#C5A059]" />,
@@ -36,13 +51,20 @@ export default function About() {
               className="relative z-10"
             >
               {/* Main Image */}
-              <div className="aspect-[4/5] rounded-none overflow-hidden border border-white/10 shadow-2xl bg-[#111111]">
-                <img
-                  src={IMAGES.luanaPortrait}
-                  alt="Luana Fatel Arquiteta"
-                  className="w-full h-full object-contain object-center filter saturate-[0.95]"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="aspect-[4/5] rounded-none overflow-hidden border border-white/10 shadow-2xl bg-[#111111] relative">
+                <AnimatePresence initial={false}>
+                  <motion.img
+                    key={currentPhotoIdx}
+                    src={photos[currentPhotoIdx]}
+                    alt="Luana Fatel Arquiteta"
+                    initial={{ opacity: 0, filter: "brightness(0.3) saturate(0.95)" }}
+                    animate={{ opacity: 1, filter: "brightness(1) saturate(0.95)" }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.4, ease: 'easeInOut' }}
+                    className="absolute inset-0 w-full h-full object-contain object-center"
+                    referrerPolicy="no-referrer"
+                  />
+                </AnimatePresence>
               </div>
 
               {/* Float Badge */}

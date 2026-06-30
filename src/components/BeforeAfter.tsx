@@ -54,7 +54,7 @@ export default function BeforeAfter() {
 
   const projectsData = {
     proj1: {
-      title: 'Projeto Suíte Íntima',
+      title: 'Projeto 1',
       location: 'Feira de Santana - BA',
       before: IMAGES.beforeAfter1_before,
       after: IMAGES.beforeAfter1_after,
@@ -62,7 +62,7 @@ export default function BeforeAfter() {
       impact: 'Otimização inteligente do layout, iluminação cênica integrada e ganho de amplitude com tons off-white elegantes.'
     },
     proj2: {
-      title: 'Projeto Living & Gourmet',
+      title: 'Projeto 2',
       location: 'Salvador - BA',
       before: IMAGES.beforeAfter2_before,
       after: IMAGES.beforeAfter2_after,

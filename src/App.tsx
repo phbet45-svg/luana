@@ -4,15 +4,15 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import BeforeAfter from './components/BeforeAfter';
+import VideoGallery from './components/VideoGallery';
 import Benefits from './components/Benefits';
-import Process from './components/Process';
-import Urgency from './components/Urgency';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import ExitIntentPopup from './components/ExitIntentPopup';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import Footer from './components/Footer';
 import CinematicIntro from './components/CinematicIntro';
+import AudioPlayer from './components/AudioPlayer';
 
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -43,14 +43,11 @@ export default function App() {
       {/* Interactive Before & After Slider */}
       <BeforeAfter />
 
+      {/* Cinematic Video Projects Gallery */}
+      <VideoGallery />
+
       {/* 6 Key Benefits Block */}
       <Benefits />
-
-      {/* 5-Step Process Timeline */}
-      <Process />
-
-      {/* Urgency & Scarcity Block */}
-      <Urgency />
 
       {/* Testimonials & Proof Block */}
       <Testimonials />
@@ -63,6 +60,9 @@ export default function App() {
 
       {/* Floating Interactive WhatsApp Action Button */}
       <FloatingWhatsApp />
+
+      {/* Floating Interactive Jazz Audio Background Player */}
+      <AudioPlayer />
 
       {/* Exit Intent Conversion Hook */}
       <ExitIntentPopup />
